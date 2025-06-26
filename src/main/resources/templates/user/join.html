@@ -1,35 +1,121 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>sns 회원가입</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<link rel="stylesheet" href="/static/css/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-</head>
-<body>
-
-	<div id="wrap">
-	
-		<header class="bg-success d-flex justify-content-center">
-			<i class="bi bi-instagram"></i>
-		</header>
-		
-		<section class="contents">
-		
-			<div class="user-box user-bg bg-dark">
-			
+<html lang="ko" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+	<section layout:fragment="contents" class="contents d-flex justify-content-center">
+		<div class="user-box memo-bg my-5 p-5"> 
+			<h1 class="text-center">Instagram</h1>
+			<h4 class="text-center mt-4">친구들의 사진과 동영상을<br>보려면 가입하세요.</h4>
+			<button type="button" class="btn btn-primary btn-block mt-5" id="facebookBtn"><small><i class="bi bi-facebook"></i> Facebook으로 로그인</small></button>
+			<div class="input-group mt-5">
+				<input type="text" class="form-control" id="idInput" placeholder="휴대폰 번호 또는 이메일 주소">
+				<button class="btn btn-outline-primary" type="button" id="duplicateBtn">중복확인</button>
 			</div>
-		
-		</section>
-		
-		
-		<footer class="bg-primary"></footer>
+			<div id="duplicateId" class="small text-danger d-none">중복된 아이디 입니다.</div>
+			<div id="avsadawdId" class="small text-success d-none">사용 가능한 아이디 입니다.</div>
+			<input type="password" class="form-control mt-2" id="passwordInput" placeholder="비밀번호">
+			<input type="password" class="form-control mt-2" id="passwordConfirmInput" placeholder="비밀번호 확인">
+			<input type="text" class="form-control mt-2" id="nameInput" placeholder="성명">
+			<input type="text" class="form-control mt-2" id="nicknameInput" placeholder="사용자 이름">
+			<p>
+			<div class="text-center mt-5"><small>저희 서비스를 이용하는 사람이 회원님의 연락처 정보를 Instagram 에 업로드 했을 수도 있습니다. <br><a href="https://www.facebook.com/help/instagram/261704639352628" target="_blank">더 알아보기</a></small></div>
+			<button type="button" class="btn btn-primary btn-block mt-3" id="joinBtn"><small>가입하기</small></button>	
+		</div>
+	</section>
 	
-	</div>
+	<script layout:fragment="script">
+	
+		$("#duplicateBtn").on("click", function(){
+			
+			let loginId = $("#loginId").val();
+			
+			if(){
+				
+			}
+			
+			$.ajax({
+				
+				
+				, success:function(response) {
+					if(response.isDuplicate) {
+						// 중복됨
+						$("#duplicateText").removeClass("d-none");
+						$("#avaText")
+					}
+				}
+			})
+			
+			
+		})
+		
+	
+	
+	
+	
+	
+	
+	
+		$("#joinBtn").on("click", function(){
+			
+			let id = $("#idInput").val();
+			let password = $("#passwordInput").val();
+			let passwordConfirm = $("#passwordConfirmInput").val();
+			let name = $("#nameInput").val();
+			let nickname = $("#nicknameInput").val();
+			
+			if(id == ""){
+				alert("아이디를 입력하세요.");
+				return;
+			}
+			
+			if(password =="") {
+				alert("비밀번호를 입력하세요.");
+				return;
+			}
+			
+			if(password != passwordConfirm){
+				alert("비밀번호가 일치하지 않습니다.");
+				return;
+			}
+			
+			if(name =="") {
+				alert("성명을 입력하세요.");
+				return;
+			}
+			
+			if(nickname == "") {
+				alert("사용자 이름을 설정해주세요.");
+				return;
+			}
+			
+			
+			$.ajax({
+				type:"post"
+				, url:"/user/join"
+				, data:{"loginId":id, "password":password, "name":name, "nickname":nickname}
+				, success:function(response) {
+					if(response.result == "success") {
+						location.href = "/user/login-view";
+					} else {
+						alert("회원가입 실패!");
+					}
+				}
+				, error:function() {
+					alert("회원가입 중 에러발생!");	
+				}
+			})
+			
+			
+			
+		})
+	
+	
+	
+	
+	
+	
+	
+	</script>
 
-
-
-
-</body>
 </html>
