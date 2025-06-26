@@ -12,8 +12,8 @@
 				<input type="text" class="form-control" id="idInput" placeholder="휴대폰 번호 또는 이메일 주소">
 				<button class="btn btn-outline-primary" type="button" id="duplicateBtn">중복확인</button>
 			</div>
-			<div id="duplicateId" class="small text-danger d-none">중복된 아이디 입니다.</div>
-			<div id="avsadawdId" class="small text-success d-none">사용 가능한 아이디 입니다.</div>
+			<div id="duplicateText" class="small text-danger d-none">중복된 아이디 입니다.</div>
+			<div id="availableText" class="small text-success d-none">사용 가능한 아이디 입니다.</div>
 			<input type="password" class="form-control mt-2" id="passwordInput" placeholder="비밀번호">
 			<input type="password" class="form-control mt-2" id="passwordConfirmInput" placeholder="비밀번호 확인">
 			<input type="text" class="form-control mt-2" id="nameInput" placeholder="성명">
@@ -26,28 +26,30 @@
 	
 	<script layout:fragment="script">
 	
-		$("#duplicateBtn").on("click", function(){
-			
-			let loginId = $("#loginId").val();
-			
-			if(){
-				
-			}
-			
-			$.ajax({
-				
-				
-				, success:function(response) {
-					if(response.isDuplicate) {
-						// 중복됨
-						$("#duplicateText").removeClass("d-none");
-						$("#avaText")
-					}
+/* 	$("#duplicateBtn").on("click", function(){
+		
+		let id = $("#loginId").val();
+		
+		if()
+		
+		$.ajax({
+			tpye:"get"
+			, url:"/user/duplicate-id"
+			, data:{"loginId":id}
+			, success:function(response) {
+				if(response.isDuplicate = "true") {
+					// 중복됨
+					$("#duplicateText").removeClass("d-none");
+					$("#availableText").addClass("d-none");
+				} else {
+					$("#availableText").removeClass("d-none");
+					$("#duplicateText").addClass("d-none");
 				}
-			})
-			
-			
+			}
 		})
+		
+		
+	}) */
 		
 	
 	
