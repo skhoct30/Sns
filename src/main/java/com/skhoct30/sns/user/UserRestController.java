@@ -26,10 +26,10 @@ public class UserRestController {
 	
 	@PostMapping("/join")
 	public Map<String, String> join (
-			@RequestParam("loginId") String loginId
-			, @RequestParam("password") String password
-			, @RequestParam("name") String name
-			, @RequestParam("nickname") String nickname){
+			@RequestParam String loginId
+			, @RequestParam String password
+			, @RequestParam String name
+			, @RequestParam String nickname){
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
