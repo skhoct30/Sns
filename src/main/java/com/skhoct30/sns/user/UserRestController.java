@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skhoct30.sns.user.domain.User;
 import com.skhoct30.sns.user.service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/user")
 @RestController
@@ -64,11 +68,32 @@ public class UserRestController {
 	@PostMapping("/login")
 	public Map<String, String> login(
 			@RequestParam String loginId
-			, @RequestParam String password){
+			, @RequestParam String password
+			, HttpServletRequest request){
 		
-		return;
+		User user =  userService.getUser(loginId, password);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(user != null) {
+			resultMap.put("result", "success");
+			
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("userId", user.getId());
+			session.setAttribute("userName", user.getName());
+			
+			
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		
+		return resultMap;
 	}
 	
+	
+	// 
 	
 
 }

@@ -6,9 +6,9 @@
 	<section layout:fragment="contents" class="contents d-flex justify-content-center">
 		<div class="user-box memo-bg my-5 p-5"> 
 			<h1 class="text-center">Instagram</h1>
-			<input type="text" class="form-control mt-5" placeholder="휴대폰 번호 또는 이메일 주소">
-			<input type="password" class="form-control mt-2" placeholder="비밀번호">
-			<button type="button" class="btn btn-primary btn-block mt-5"><small>로그인</small></button>
+			<input type="text" class="form-control mt-5" placeholder="휴대폰 번호 또는 이메일 주소" id="idInput">
+			<input type="password" class="form-control mt-2" placeholder="비밀번호" id="passwordInput">
+			<button type="button" class="btn btn-primary btn-block mt-5" id="loginBtn"><small>로그인</small></button>
 			<div class="text-center mt-5">
 				<small class="text-primary"><a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i> Facebook으로 로그인</a></small>
 				<div class="mt-2"><small class="font-weight-bold">비밀번호를 잊으셨나요?</small></div>
@@ -22,7 +22,35 @@
 	
 	
 	<script layout:fragment="script">
-	
+		$("#loginBtn").on("click", function(){
+			let id = $("#idInput").val();
+			let password = $("#passwordInput").val();
+			
+			if(id == ""){
+				alert("아이디를 입력하세요.");
+				return;
+			}
+			
+			if(password == ""){
+				alert("비밀번호를 입력하세요.");
+				return;
+			}
+			
+			$.ajax({
+				type:"post"
+				, url:"/user/login"
+				, data:{"loginId":id, "password":password}
+				, success:function(response) {
+					if(response.result == "success"){
+						location.href = "/post/timeline-view";
+					}
+				}
+				, error:function() {
+					alert("로그인 에러발생!");
+				}
+			})
+			
+		})
 	
 	
 	

@@ -3,6 +3,7 @@ package com.skhoct30.sns.user.service;
 import org.springframework.stereotype.Service;
 
 import com.skhoct30.sns.common.MD5HashingEncoder;
+import com.skhoct30.sns.user.domain.User;
 import com.skhoct30.sns.user.repository.UserRepository;
 
 @Service
@@ -59,7 +60,11 @@ public class UserService {
 	
 	// 로그인 기능
 	
-	public  getUser(String loginId, String password) {
+	public User getUser(String loginId, String password) {
+		
+		String hashingPassword = MD5HashingEncoder.encode(password);
+		
+		return userRepository.selectUser(loginId, hashingPassword);
 		
 	}
 	
