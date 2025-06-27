@@ -59,6 +59,16 @@ public class UserRestController {
 	}
 	
 	
+	// 로그인을 위한 api 작성
+	
+	@PostMapping("/login")
+	public Map<String, String> login(
+			@RequestParam String loginId
+			, @RequestParam String password){
+		
+		return;
+	}
+	
 	
 
 }

@@ -57,4 +57,13 @@ public class UserService {
 	
 	
 	
+	// 로그인 기능
+	
+	public  getUser(String loginId, String password) {
+		
+	}
+	
+	
+	
+	
 }
