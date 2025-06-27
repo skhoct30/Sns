@@ -30,14 +30,17 @@
 		
 		let id = $("#loginId").val();
 		
-		if()
+		if(id == "") {
+			alert("아이디를 입력해주세요");
+			return;
+		}
 		
 		$.ajax({
 			tpye:"get"
 			, url:"/user/duplicate-id"
 			, data:{"loginId":id}
 			, success:function(response) {
-				if(response.isDuplicate = "true") {
+				if(response.isDuplicate = true) {
 					// 중복됨
 					$("#duplicateText").removeClass("d-none");
 					$("#availableText").addClass("d-none");
