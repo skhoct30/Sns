@@ -63,13 +63,15 @@ public class UserRestController {
 	}
 	
 	
-	// 로그인을 위한 api 작성
+	// 로그인을 위한 API 작성
+	
+	// 기능 : 요청 , 응답 , 세션(session)
 	
 	@PostMapping("/login")
 	public Map<String, String> login(
 			@RequestParam String loginId
 			, @RequestParam String password
-			, HttpServletRequest request){
+			, HttpSession session){ //HttpServletRequest request << 원래는 이런값을 썻지만 저렇게 해도된다
 		
 		User user =  userService.getUser(loginId, password);
 		
@@ -78,9 +80,15 @@ public class UserRestController {
 		if(user != null) {
 			resultMap.put("result", "success");
 			
-			HttpSession session = request.getSession();
+//			HttpSession session = request.getSession();
+//			
+//			session.setAttribute("userId", user.getId());
+//			session.setAttribute("userName", user.getName());
 			
+			// 사용자 정보에 대한걸 저장
+			// 아이디 멤버변수를 저장시켜야함 
 			session.setAttribute("userId", user.getId());
+			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getName());
 			
 			

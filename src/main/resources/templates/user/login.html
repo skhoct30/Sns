@@ -5,10 +5,12 @@
 	layout:decorate="~{layout/default}">
 	<section layout:fragment="contents" class="contents d-flex justify-content-center">
 		<div class="user-box memo-bg my-5 p-5"> 
-			<h1 class="text-center">Instagram</h1>
-			<input type="text" class="form-control mt-5" placeholder="휴대폰 번호 또는 이메일 주소" id="idInput">
-			<input type="password" class="form-control mt-2" placeholder="비밀번호" id="passwordInput">
-			<button type="button" class="btn btn-primary btn-block mt-5" id="loginBtn"><small>로그인</small></button>
+			<h1 class="text-center">Dreamgram</h1>
+			<form id="loginForm">
+				<input type="text" class="form-control mt-5" placeholder="휴대폰 번호 또는 이메일 주소" id="idInput">
+				<input type="password" class="form-control mt-2" placeholder="비밀번호" id="passwordInput">
+				<button type="submit" class="btn btn-primary btn-block mt-5" id="loginBtn"><small>로그인</small></button>
+			</form>
 			<div class="text-center mt-5">
 				<small class="text-primary"><a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i> Facebook으로 로그인</a></small>
 				<div class="mt-2"><small class="font-weight-bold">비밀번호를 잊으셨나요?</small></div>
@@ -22,7 +24,21 @@
 	
 	
 	<script layout:fragment="script">
-		$("#loginBtn").on("click", function(){
+		
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		$("#loginForm").on("submit", function(e){
+			// form 태그 원래의 기능을 제거
+			e.preventDefault();
+			
 			let id = $("#idInput").val();
 			let password = $("#passwordInput").val();
 			
@@ -43,6 +59,8 @@
 				, success:function(response) {
 					if(response.result == "success"){
 						location.href = "/post/timeline-view";
+					} else {
+						alert("아이디, 비밀번호를 확인해주세요!");
 					}
 				}
 				, error:function() {
