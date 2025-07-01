@@ -1,15 +1,107 @@
 <!DOCTYPE html>
-<html lang="ko" 
-	xmlns:th="http://www.thymeleaf.org" 
+<html lang="ko"
+	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/default}">
-	
-	<section layout:fragment="contents">
-		
-		<div class="d-flex mt-5" th:if="${session.userId != null}">
-			<h2 th:text="${session.userName}"></h2>
-			<div class="rounded-lg"></div>
+
+	<section layout:fragment="contents" class="contents">
+		<!-- 게시물 작성하는 곳 -->
+		<div class="container memo-box pt-5 mt-5 d-flex justify-content-center">
+			<a href="" class="btn btn-primary mt-5 col-6">게시물 작성</a>
 		</div>
-		
+	
+	
+	
+	
+	
+		<div class="container memo-box pt-1 mt-5">
+
+			<div class="card mb-4 shadow-sm border-0">
+			    <div class="card-header bg-white d-flex align-items-center py-3 px-3 border-0">
+			        <div class="rounded-circle bg-dark me-2"></div> <div class="flex-grow-1 mt-3" th:if="${session.userId != null}">
+			            <h4 class="mb-2 fw-bold">jin_se</h4>
+			            <small class="text-muted">서울 동작구 상도동</small>
+			        </div>
+			        <button class="btn btn-sm btn-link text-dark" type="button">
+			            <i class="bi bi-three-dots"></i>
+			        </button>
+			    </div>
+			
+				<div class="bg-primary d-flex justify-content-center align-items-center rounded-0" style="height: 400px;">
+				 	<span class="text-white fs-4">게시물 이미지</span>
+				</div>
+			
+				<div class="card-body">
+				    <div class="d-flex justify-content-between">
+				        <div class="d-flex">
+				        	<div class="">
+					            <i class="bi bi-heart-fill"> 12.4천</i>
+				            </div>
+				            <div class="mx-3">
+				            	<i class="bi bi-chat-fill"> 405</i>
+				            </div>
+				            <div>
+								<i class="bi bi-send-fill"> 952</i>
+				            </div>
+				        </div>
+				        <div>
+							<i class="bi bi-bookmark"></i>
+				        </div>
+				    </div>
+
+				    <p class="card-text mb-0">
+				        <span class="font-weight-bold">jin_se</span> 날씨가 좋아서 오늘 밤 산책을 나왔어요
+				    </p>
+				</div>
+				
+			</div>
+		</div>
+
+
+		<div class="container memo-box pt-x mt-5">
+
+			<div class="card mb-4 shadow-sm border-0 mt-5">
+			    <div class="card-header bg-white d-flex align-items-center py-3 px-3 border-0">
+			        <div class="rounded-circle bg-dark me-2"></div> <div class="flex-grow-1 mt-3" th:if="${session.userId != null}">
+			            <h4 class="mb-2 fw-bold">jin_se</h4>
+			            <small class="text-muted">서울 구로구 도림로</small>
+			        </div>
+			        <button class="btn btn-sm btn-link text-dark" type="button">
+			            <i class="bi bi-three-dots"></i>
+			        </button>
+			    </div>
+			
+				<div class="bg-primary d-flex justify-content-center align-items-center rounded-0" style="height: 400px;">
+				 	<span class="text-white fs-4">게시물 이미지</span>
+				</div>
+			
+				<div class="card-body">
+				    <div class="d-flex justify-content-between">
+				        <div class="d-flex">
+				        	<div class="">
+					            <i class="bi bi-heart-fill"> 4천</i>
+				            </div>
+				            <div class="mx-3">
+				            	<i class="bi bi-chat-fill"> 55</i>
+				            </div>
+				            <div>
+								<i class="bi bi-send-fill"> 1052</i>
+				            </div>
+				        </div>
+				        <div>
+							<i class="bi bi-bookmark"></i>
+				        </div>
+				    </div>
+
+				    <p class="card-text mb-0">
+				        <span class="font-weight-bold">jin_se</span> 휴일에는 맛집 탐방이 최고!!
+				    </p>
+				</div>
+				
+			</div>
+		</div>
+
+
+
 	</section>
 </html>
