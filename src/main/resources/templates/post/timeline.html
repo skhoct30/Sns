@@ -6,20 +6,22 @@
 
 	<section layout:fragment="contents" class="contents">
 		<!-- 게시물 작성하는 곳 -->
-		<div class="container memo-box pt-5 mt-5 d-flex justify-content-center">
-			<a href="" class="btn btn-primary mt-5 col-6">게시물 작성</a>
+		<div class="container list-box pt-5 mt-5 d-flex justify-content-center">
+			<a href="/post/create-view" class="btn text-white mt-5 col-12" style="background-color: #405DE6;">게시물 작성 <i class="bi bi-pencil-fill"></i></a>
 		</div>
-	
-	
-	
-	
-	
-		<div class="container memo-box pt-1 mt-5">
+		
+		<div class="d-flex justify-content-start">
+		
+		
+		</div>
 
-			<div class="card mb-4 shadow-sm border-0">
+
+		<div class="container list-box pt-1 mt-5">
+
+			<div class="card shadow-sm rounded">
 			    <div class="card-header bg-white d-flex align-items-center py-3 px-3 border-0">
-			        <div class="rounded-circle bg-dark me-2"></div> <div class="flex-grow-1 mt-3" th:if="${session.userId != null}">
-			            <h4 class="mb-2 fw-bold">jin_se</h4>
+			        <div class="flex-grow-1 mt-2" th:if="${session.userId != null}">
+			            <h4 class="mb-2 fw-bold" th:text=${session.nickname}></h4>
 			            <small class="text-muted">서울 동작구 상도동</small>
 			        </div>
 			        <button class="btn btn-sm btn-link text-dark" type="button">
@@ -35,13 +37,13 @@
 				    <div class="d-flex justify-content-between">
 				        <div class="d-flex">
 				        	<div class="">
-					            <i class="bi bi-heart-fill"> 12.4천</i>
+					            <i class="bi bi-heart-fill" style="color: #FF3838;"></i><span> 12.4천</span>
 				            </div>
 				            <div class="mx-3">
-				            	<i class="bi bi-chat-fill"> 405</i>
+				            	<i class="bi bi-chat-fill"></i><span> 405</span>
 				            </div>
 				            <div>
-								<i class="bi bi-send-fill"> 952</i>
+								<i class="bi bi-send-fill"></i><span> 952</span>
 				            </div>
 				        </div>
 				        <div>
@@ -49,20 +51,20 @@
 				        </div>
 				    </div>
 
-				    <p class="card-text mb-0">
-				        <span class="font-weight-bold">jin_se</span> 날씨가 좋아서 오늘 밤 산책을 나왔어요
+				    <p class="card-text mb-0 mt-2" th:if="${session.userId != null}">
+				        <span class="font-weight-bold" th:text="${session.nickname}"></span> 날씨가 좋아서 오늘 밤 산책을 나왔어요
 				    </p>
 				</div>
-				
 			</div>
+			
 		</div>
 
 
-		<div class="container memo-box pt-x mt-5">
+		<div class="container list-box pt-x mt-5">
 
-			<div class="card mb-4 shadow-sm border-0 mt-5">
+			<div class="card shadow-sm rounded">
 			    <div class="card-header bg-white d-flex align-items-center py-3 px-3 border-0">
-			        <div class="rounded-circle bg-dark me-2"></div> <div class="flex-grow-1 mt-3" th:if="${session.userId != null}">
+			        <div class="flex-grow-1 mt-2" th:if="${session.userId != null}">
 			            <h4 class="mb-2 fw-bold">jin_se</h4>
 			            <small class="text-muted">서울 구로구 도림로</small>
 			        </div>
@@ -79,13 +81,13 @@
 				    <div class="d-flex justify-content-between">
 				        <div class="d-flex">
 				        	<div class="">
-					            <i class="bi bi-heart-fill"> 4천</i>
+					            <i class="bi bi-heart-fill" style="color: #FF3838;"></i><span> 4천</span>
 				            </div>
 				            <div class="mx-3">
-				            	<i class="bi bi-chat-fill"> 55</i>
+				            	<i class="bi bi-chat-fill"></i><span> 55</span>
 				            </div>
 				            <div>
-								<i class="bi bi-send-fill"> 1052</i>
+								<i class="bi bi-send-fill"></i><span> 1052</span>
 				            </div>
 				        </div>
 				        <div>
@@ -93,8 +95,8 @@
 				        </div>
 				    </div>
 
-				    <p class="card-text mb-0">
-				        <span class="font-weight-bold">jin_se</span> 휴일에는 맛집 탐방이 최고!!
+				    <p class="card-text mb-0 mt-2" th:if="${session.userId != null}">
+				        <span class="font-weight-bold" th:text="${session.nickname}"></span> 휴일에는 맛집 탐방이 최고!!
 				    </p>
 				</div>
 				
