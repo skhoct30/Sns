@@ -20,8 +20,8 @@
 					<textarea class="form-control" rows="30" placeholder="내용을 입력하세요. . ." id="contentsInput"></textarea>
 				</div>
 				<div class="px-3 mt-4 d-flex justify-content-between">
-					<input type="file" class=" mt-3">
-					<button type="button" class="btn text-white" style="background-color: #405DE6; width:100px;">공유하기</button>
+					<input type="file" class=" mt-3" id="fileInput">
+					<button type="button" class="btn text-white" style="background-color: #405DE6; width:100px;" id="saveBtn">공유하기</button>
 				</div>
 				
 				
@@ -31,3 +31,52 @@
 		</div>
 	
 	</section>
+	
+	<script layout:fragment="script">
+		$("#saveBtn").on("click", function(){
+			
+			let contents = $("#contentsInput").val();
+			let file = $("#fileInput").val();
+			
+			if(contents == "") {
+				alert("내용을 입력하세요");
+				return;
+			}
+			
+			//파일 저장기능
+			let formData = new FormData();
+			formData.append("contents", contents);
+			formData.append("imageFile", file);
+			
+			
+			$.ajax({
+				type:"post"
+				, url:"/post/create"
+				, data:formData
+				, enctype:"multipart/form-data"
+				, processData:false
+				, contentType:false
+				, success:function(response) {
+					if(response.result == "success") {
+						location.href = "/post/timeline-view"
+					} else {
+						alert("글 작성 실패!");
+					}
+				}
+				, error:function() {
+					alert("글 작성 오류!");
+				}
+			
+			})
+			
+			
+			
+		})
+	
+	
+	</script>
+	
+	
+	
+	
+	

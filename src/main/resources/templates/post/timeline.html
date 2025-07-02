@@ -65,7 +65,7 @@
 			<div class="card shadow-sm rounded">
 			    <div class="card-header bg-white d-flex align-items-center py-3 px-3 border-0">
 			        <div class="flex-grow-1 mt-2" th:if="${session.userId != null}">
-			            <h4 class="mb-2 fw-bold">jin_se</h4>
+			            <h4 class="mb-2 fw-bold" th:text=${session.nickname}>jin_se</h4>
 			            <small class="text-muted">서울 구로구 도림로</small>
 			        </div>
 			        <button class="btn btn-sm btn-link text-dark" type="button">
@@ -73,8 +73,9 @@
 			        </button>
 			    </div>
 			
-				<div class="bg-primary d-flex justify-content-center align-items-center rounded-0" style="height: 400px;">
-				 	<span class="text-white fs-4">게시물 이미지</span>
+				<div class="bg-primary d-flex justify-content-center align-items-center rounded-0" style="height: 400px;" th:each="post:${postList}">
+				 	<!-- <span class="text-white fs-4">게시물 이미지</span>  -->
+				 	<img th:src="${post.imagePath}">
 				</div>
 			
 				<div class="card-body">
@@ -95,8 +96,8 @@
 				        </div>
 				    </div>
 
-				    <p class="card-text mb-0 mt-2" th:if="${session.userId != null}">
-				        <span class="font-weight-bold" th:text="${session.nickname}"></span> 휴일에는 맛집 탐방이 최고!!
+				    <p class="card-text mb-0 mt-2" th:if="${session.userId != null}" th:each="post:${postList}">
+				        <span class="font-weight-bold" th:text="${session.nickname}"></span> <span th:text="${post.contents}">휴일에는 맛집 탐방이 최고!!</span>
 				    </p>
 				</div>
 				
