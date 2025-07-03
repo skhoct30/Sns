@@ -14,7 +14,7 @@ public class FileManager {
 	// 경로 잡아준거같음.
 	// C:\Users\서강현\Desktop\seo_kang_hyun\springProject\\upload\\sns 
 	// D:\\seo_kang_hyun\\springProject\\upload\\sns
-	public static final String FILE_UPLOAD_PATH ="C:\\Users\\서강현\\Desktop\\seo_kang_hyun\\springProject\\upload\\sns";
+	public static final String FILE_UPLOAD_PATH ="D:\\seo_kang_hyun\\springProject\\upload\\sns";
 	
 	// 파일 저장기능
 	public static String saveFile(long userId, MultipartFile file) {

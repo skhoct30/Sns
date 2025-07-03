@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skhoct30.sns.post.domain.Post;
+import com.skhoct30.sns.post.dto.PostDto;
 import com.skhoct30.sns.post.service.PostService;
 
 import jakarta.servlet.http.HttpSession;
@@ -29,9 +30,8 @@ public class PostController {
 	public String postList(HttpSession session
 			, Model model) {
 		
-		Long userId = (Long)session.getAttribute("userId");
 		
-		List<Post> postList = postService.getPostList(userId);
+		List<PostDto> postList = postService.getPostList();
 		
 		
 		model.addAttribute("postList", postList);

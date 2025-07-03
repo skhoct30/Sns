@@ -36,7 +36,7 @@
 		$("#saveBtn").on("click", function(){
 			
 			let contents = $("#contentsInput").val();
-			let file = $("#fileInput").val();
+			let file = $("#fileInput")[0].files[0];
 			
 			if(contents == "") {
 				alert("내용을 입력하세요");

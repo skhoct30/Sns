@@ -4,24 +4,22 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/default}">
 
-	<section layout:fragment="contents" class="contents">
+	<section layout:fragment="contents" class="contents ">
 		<!-- 게시물 작성하는 곳 -->
 		<div class="container list-box pt-5 mt-5 d-flex justify-content-center">
 			<a href="/post/create-view" class="btn text-white mt-5 col-12" style="background-color: #405DE6;">게시물 작성 <i class="bi bi-pencil-fill"></i></a>
 		</div>
 		
 		<div class="d-flex justify-content-start">
-		
-		
 		</div>
 
 
-		<div class="container list-box pt-1 mt-5">
+		<div class="container list-box pt-1 mt-5" th:each="post:${postList}">
 
 			<div class="card shadow-sm rounded">
 			    <div class="card-header bg-white d-flex align-items-center py-3 px-3 border-0">
-			        <div class="flex-grow-1 mt-2" th:if="${session.userId != null}">
-			            <h4 class="mb-2 fw-bold" th:text=${session.nickname}></h4>
+			        <div class="flex-grow-1 mt-2">
+			            <h4 class="mb-2 fw-bold" th:text=${post.nickname}></h4>
 			            <small class="text-muted">서울 동작구 상도동</small>
 			        </div>
 			        <button class="btn btn-sm btn-link text-dark" type="button">
@@ -29,8 +27,8 @@
 			        </button>
 			    </div>
 			
-				<div class="bg-primary d-flex justify-content-center align-items-center rounded-0" style="height: 400px;">
-				 	<span class="text-white fs-4">게시물 이미지</span>
+				<div class="bg-primary d-flex justify-content-center align-items-center rounded-0">
+				 	<img th:src="${post.imagePath}" style="width: 100%; height: 100%; object-fit: cover;">
 				</div>
 			
 				<div class="card-body">
@@ -51,58 +49,31 @@
 				        </div>
 				    </div>
 
-				    <p class="card-text mb-0 mt-2" th:if="${session.userId != null}">
-				        <span class="font-weight-bold" th:text="${session.nickname}"></span> 날씨가 좋아서 오늘 밤 산책을 나왔어요
-				    </p>
-				</div>
-			</div>
-			
-		</div>
-
-
-		<div class="container list-box pt-x mt-5">
-
-			<div class="card shadow-sm rounded">
-			    <div class="card-header bg-white d-flex align-items-center py-3 px-3 border-0">
-			        <div class="flex-grow-1 mt-2" th:if="${session.userId != null}">
-			            <h4 class="mb-2 fw-bold" th:text=${session.nickname}>jin_se</h4>
-			            <small class="text-muted">서울 구로구 도림로</small>
-			        </div>
-			        <button class="btn btn-sm btn-link text-dark" type="button">
-			            <i class="bi bi-three-dots"></i>
-			        </button>
-			    </div>
-			
-				<div class="bg-primary d-flex justify-content-center align-items-center rounded-0" style="height: 400px;" th:each="post:${postList}">
-				 	<!-- <span class="text-white fs-4">게시물 이미지</span>  -->
-				 	<img th:src="${post.imagePath}">
-				</div>
-			
-				<div class="card-body">
-				    <div class="d-flex justify-content-between">
-				        <div class="d-flex">
-				        	<div class="">
-					            <i class="bi bi-heart-fill" style="color: #FF3838;"></i><span> 4천</span>
-				            </div>
-				            <div class="mx-3">
-				            	<i class="bi bi-chat-fill"></i><span> 55</span>
-				            </div>
-				            <div>
-								<i class="bi bi-send-fill"></i><span> 1052</span>
-				            </div>
-				        </div>
-				        <div>
-							<i class="bi bi-bookmark"></i>
-				        </div>
+				    <div class="card-text mb-0 mt-2">
+				        <div class="font-weight-bold" th:text="${post.nickname}" ></div><span th:text="${post.contents}">날씨가 좋아서 오늘 밤 산책을 나왔어요</span>
 				    </div>
 
-				    <p class="card-text mb-0 mt-2" th:if="${session.userId != null}" th:each="post:${postList}">
-				        <span class="font-weight-bold" th:text="${session.nickname}"></span> <span th:text="${post.contents}">휴일에는 맛집 탐방이 최고!!</span>
-				    </p>
+				    <div class="comment mt-3">
+						<div class="d-flex">
+							<span class="font-weight-bold mr-2">zz@naver.com</span>
+							<span>ㅋㅋ오 ㅋㅋ 이쁘네요</span>
+						</div>
+						<div class="d-flex">
+							<span class="font-weight-bold mr-2">Wonhoon__zz</span>
+							<span>어쩌라고 ㅋ</span>
+						</div>
+						<div class="input-group d-flex mt-3">
+	                       	<input type="text" class="form-control">
+	                        <div class="input-group-append"> <!-- input-group-append : 클래스에 넣으면 옆에 붙혀줌-->
+	                            <button class="btn text-white" type="button" style="background-color: #405DE6;">입력</button>
+	                        </div>
+						</div>
+					</div>
 				</div>
-				
 			</div>
+			
 		</div>
+
 
 
 

@@ -1,25 +1,33 @@
 package com.skhoct30.sns.post.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skhoct30.sns.common.FileManager;
 import com.skhoct30.sns.post.domain.Post;
+import com.skhoct30.sns.post.dto.PostDto;
 import com.skhoct30.sns.post.repository.PostRepository;
+import com.skhoct30.sns.user.domain.User;
+import com.skhoct30.sns.user.service.UserService;
 
 import jakarta.persistence.PersistenceException;
+
 
 
 @Service
 public class PostService {
 
 	private final PostRepository postRepository;
+	private final UserService userService;
 	
-	public PostService(PostRepository postRepository) {
+	public PostService(PostRepository postRepository, UserService userService) {
 		this.postRepository = postRepository;
+		this.userService = userService;
 	}
 	
 	
@@ -53,11 +61,34 @@ public class PostService {
 	
 	
 	
-	public List<Post> getPostList(long userId) {
+	public List<PostDto> getPostList() {
 		
-		List<Post> postList = postRepository.findByUserIdOrderByIdDesc(userId);
+		// List<Post> postList = postRepository.findByUserIdOrderByIdDesc(userId);
+
+		//return postList;
 		
-		return postList;
+		List<Post> postList = postRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+				
+	
+		List<PostDto> postDtoList = new ArrayList<>();
+		
+		for(Post post:postList) {
+			
+			User user = userService.getUserById(post.getUserId());
+			
+			PostDto postDto = PostDto.builder()
+			.id(post.getId())
+			.nickname(user.getNickname())
+			.contents(post.getContents())
+			.imagePath(post.getImagePath())
+			.userId(post.getUserId())
+			.build();
+			
+			postDtoList.add(postDto);
+		}
+		return postDtoList;
+		
+		
 	}
 	
 	

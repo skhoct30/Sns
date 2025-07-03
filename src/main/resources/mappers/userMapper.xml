@@ -58,6 +58,23 @@
 	
 	</select>
 	
+	
+	<select id="selectUserById" parameterType="long" resultType="com.skhoct30.sns.user.domain.User">
+		SELECT
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `nickname`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+		WHERE
+			`id` = #{id}
+	
+	</select>
+	
 
 
 

@@ -27,5 +27,8 @@ public interface UserRepository {
 	
 	//
 	
+	public User selectUserById(@Param("id") long id);
+	
+	
 	
 }
