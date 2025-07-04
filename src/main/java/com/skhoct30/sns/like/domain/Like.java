@@ -1,4 +1,4 @@
-package com.skhoct30.sns.post.domain;
+package com.skhoct30.sns.like.domain;
 
 import java.time.LocalDateTime;
 
@@ -18,23 +18,22 @@ import lombok.ToString;
 
 
 @ToString
-@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="`post`")
+@Getter
+@Table(name="`like`")
 @Entity
-
-public class Post {
-
+public class Like {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	
+	private long postId;
 	private long userId;
-	private String contents;
-	private String imagePath;
 	
-
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	
 	
 }

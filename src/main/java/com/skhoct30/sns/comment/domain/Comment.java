@@ -1,4 +1,4 @@
-package com.skhoct30.sns.post.domain;
+package com.skhoct30.sns.comment.domain;
 
 import java.time.LocalDateTime;
 
@@ -22,19 +22,21 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="`post`")
+@Table(name="`comment`")
 @Entity
-
-public class Post {
-
+public class Comment {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	
 	private long userId;
+	private long postId;
 	private String contents;
-	private String imagePath;
 	
-
+	
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
 	
 }

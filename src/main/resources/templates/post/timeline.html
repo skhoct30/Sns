@@ -34,8 +34,8 @@
 				<div class="card-body">
 				    <div class="d-flex justify-content-between">
 				        <div class="d-flex">
-				        	<div class="">
-					            <i class="bi bi-heart-fill" style="color: #FF3838;"></i><span> 12.4천</span>
+				        	<div class="">                                  <!-- 이거 dto 에서 가져오는거임 -->
+					            <i class="bi bi-heart-fill heart-icon" th:data-post-id="${post.id}" style="color: #FF3838;"></i><span> 12.4천</span>
 				            </div>
 				            <div class="mx-3">
 				            	<i class="bi bi-chat-fill"></i><span> 405</span>
@@ -62,10 +62,10 @@
 							<span class="font-weight-bold mr-2">Wonhoon__zz</span>
 							<span>어쩌라고 ㅋ</span>
 						</div>
-						<div class="input-group d-flex mt-3">
-	                       	<input type="text" class="form-control">
-	                        <div class="input-group-append"> <!-- input-group-append : 클래스에 넣으면 옆에 붙혀줌-->
-	                            <button class="btn text-white" type="button" style="background-color: #405DE6;">입력</button>
+						<div class="input-group d-flex mt-3">			<!-- 아이디가 commentInput 뒤에 딱 붙어서 적용됨 -->
+	                       	<input type="text" class="form-control" th:id="|commentInput${post.id}|">
+	                        <div class="input-group-append">
+	                            <button class="btn text-white comment-btn" type="button" style="background-color: #405DE6;" th:data-post-id="${post.id}">입력</button>
 	                        </div>
 						</div>
 					</div>
@@ -78,4 +78,69 @@
 
 
 	</section>
+	
+	
+	<script layout:fragment="script">
+		
+		$(".comment-btn").on("click", function(){
+			let postId = $(this).data("post-id");
+			
+			//이벤트가 발생한 그 바로 앞의 태그를 가져올 수ㅠ 있다
+			//let comment = $(this).prev().val();
+			
+			let comment = $("#commentInput" + postId).val();
+			
+			$.ajax({
+				type:"post"
+				, url:"/post/comment/create"
+				, data:{"postId":postId, "contents":comment}
+				, success:function(response) {
+					if(response.result == "success") {
+						location.relead();
+					} else {
+						alert("댓글 작성 실패!");
+					}
+					
+				} 
+				, error:function(){
+					alert("댓글 작성 에러!");
+				}
+			})
+		})
+	
+	
+	
+	
+	
+		$(".heart-icon").on("click", function(){
+			let postId = $(this).data("post-id");
+			
+			$.ajax({
+				type:"post"
+				, url:"/post/like"
+				, data:{"postId":postId}
+				, success:function(response) {
+					if(response.result == "success") {
+						location.relead();
+					} else {
+						alert("좋아요 클릭 실패!");
+					}
+				}
+				, error:function() {
+					alert("좋아요 에러!");
+				}
+			})	
+			
+		})
+	
+	
+	
+	
+	
+	
+	
+	</script>
+	
+	
+	
 </html>
