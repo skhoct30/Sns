@@ -38,8 +38,11 @@ public class LikeService {
 		return likeRepository.countByPostId(postId);
 	}
 	
+	// 좋아요를 이 사용자가 했는지 안했는지 확인하기 위한 기능
 	
-	//
+	public boolean isLikePostIdAndUserId(long postId, long userId) {
+		return likeRepository.existsByPostIdAndUserId(postId, userId);
+	}
 	
 	
 	

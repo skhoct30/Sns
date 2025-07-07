@@ -10,4 +10,11 @@ public interface LikeRepository extends JpaRepository<Like, Long> {
 	
 	public int countByPostId(long postId);
 
+	
+	// jpa 기반에서 행이 존재하는지 안하는지 판단해주는 규칙이 있음.
+	// exists
+	// 특정 행이 존재 하는지 / 안하는지.
+	public boolean existsByPostIdAndUserId(long postId, long userId);
+	
+	
 }

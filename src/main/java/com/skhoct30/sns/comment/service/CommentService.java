@@ -61,6 +61,7 @@ public class CommentService {
 			.id(comment.getId())
 			.contents(comment.getContents())
 			.userId(comment.getUserId())
+			.nickname(user.getNickname())
 			.build();
 			
 			commentDtoList.add(commentDto);

@@ -76,7 +76,7 @@ public class PostService {
 	
 	
 	
-	public List<PostDto> getPostList() {
+	public List<PostDto> getPostList(long userId) {
 		
 		// List<Post> postList = postRepository.findByUserIdOrderByIdDesc(userId);
 
@@ -94,6 +94,9 @@ public class PostService {
 			// 특정 게시물 좋아요 갯수
 			int likeCount = likeService.likeCountByPostId(post.getId());
 			
+			//                                              로그인한 사용자의 id
+			boolean isLike = likeService.isLikePostIdAndUserId(post.getId(), userId);
+			
 			
 			
 			List<CommentDto> commentList = commentService.getCommentListByPostId(post.getId());
@@ -105,6 +108,7 @@ public class PostService {
 			.imagePath(post.getImagePath())
 			.userId(post.getUserId())
 			.likeCount(likeCount)
+			.isLike(isLike)
 			.commentList(commentList)
 			.build();
 			

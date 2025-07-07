@@ -32,8 +32,10 @@ public class PostController {
 		
 		//long userId = (Long)session.getAttribute("userId");
 		
+		long userId = (Long)session.getAttribute("userId");
+		
 		//                                                userId
-		List<PostDto> postList = postService.getPostList();
+		List<PostDto> postList = postService.getPostList(userId);
 		
 		
 		model.addAttribute("postList", postList);
