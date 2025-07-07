@@ -30,7 +30,9 @@ public class PostController {
 	public String postList(HttpSession session
 			, Model model) {
 		
+		//long userId = (Long)session.getAttribute("userId");
 		
+		//                                                userId
 		List<PostDto> postList = postService.getPostList();
 		
 		

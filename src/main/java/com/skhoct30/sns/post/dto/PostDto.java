@@ -1,5 +1,9 @@
 package com.skhoct30.sns.post.dto;
 
+import java.util.List;
+
+import com.skhoct30.sns.comment.dto.CommentDto;
+
 import lombok.Builder;
 import lombok.Getter;
 
@@ -21,7 +25,11 @@ public class PostDto {
 	// primarykey 도 같이 묶어서 관리하자
 	private long userId;
 	
+	private int likeCount;
+	private boolean isLike;
 	
+	// 댓글
+	private List<CommentDto> commentList;
 	
 	
 	

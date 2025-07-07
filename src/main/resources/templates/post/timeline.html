@@ -35,7 +35,7 @@
 				    <div class="d-flex justify-content-between">
 				        <div class="d-flex">
 				        	<div class="">                                  <!-- 이거 dto 에서 가져오는거임 -->
-					            <i class="bi bi-heart-fill heart-icon" th:data-post-id="${post.id}" style="color: #FF3838;"></i><span> 12.4천</span>
+					            <i class="bi bi-heart-fill heart-icon" th:data-post-id="${post.id}" style="color: #FF3838;"></i> <span th:text="${post.likeCount}"></span><span>개</span>
 				            </div>
 				            <div class="mx-3">
 				            	<i class="bi bi-chat-fill"></i><span> 405</span>
@@ -54,14 +54,13 @@
 				    </div>
 
 				    <div class="comment mt-3">
-						<div class="d-flex">
-							<span class="font-weight-bold mr-2">zz@naver.com</span>
-							<span>ㅋㅋ오 ㅋㅋ 이쁘네요</span>
+				    	<div>
+							<div class="d-flex" th:each="comment:${post.commentList}">
+								<span th:text="${comment.userId}" class="font-weight-bold mr-2">zz@naver.com</span>
+								<span th:text="${comment.contents}">ㅋㅋ오 ㅋㅋ 이쁘네요</span>
+							</div>
 						</div>
-						<div class="d-flex">
-							<span class="font-weight-bold mr-2">Wonhoon__zz</span>
-							<span>어쩌라고 ㅋ</span>
-						</div>
+						
 						<div class="input-group d-flex mt-3">			<!-- 아이디가 commentInput 뒤에 딱 붙어서 적용됨 -->
 	                       	<input type="text" class="form-control" th:id="|commentInput${post.id}|">
 	                        <div class="input-group-append">
