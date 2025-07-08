@@ -14,7 +14,7 @@ public class FileManager {
 	// 경로 잡아준거같음.
 	// C:\Users\서강현\Desktop\seo_kang_hyun\springProject\\upload\\sns 
 	// D:\\seo_kang_hyun\\springProject\\upload\\sns
-	public static final String FILE_UPLOAD_PATH ="C:\\Users\\서강현\\Desktop\\seo_kang_hyun\\springProject\\client";
+	public static final String FILE_UPLOAD_PATH ="D:\\seo_kang_hyun\\springProject\\upload\\sns";
 	
 	// 파일 저장기능
 	public static String saveFile(long userId, MultipartFile file) {
@@ -62,10 +62,30 @@ public class FileManager {
 		return "/images" + directoryName + "/" + file.getOriginalFilename();
 
 		
+	}
+	
+	
+	// 파일 삭제 기능
+	
+	public static boolean removeFile(String filePath) {
 		
+		String fullFilePath = FILE_UPLOAD_PATH + filePath.replace("/image", "");
 		
+		Path path = Paths.get(fullFilePath);
 		
+		Path dirPath = path.getParent();
+		try {
+			Files.delete(path);
+			Files.delete(dirPath);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 		
 	}
+	
+	
 	
 }

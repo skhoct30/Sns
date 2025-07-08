@@ -138,4 +138,35 @@ public class PostService {
 	}
 	
 	
+	
+	
+	
+	// 삭제기능
+	
+	public boolean deletetPost(long id) {
+		
+		Optional<Post> optionalPost = postRepository.findById(id);
+		
+		if(optionalPost.isPresent()) {
+			
+			Post post = optionalPost.get();
+			
+			//
+			postRepository.delete(post);
+			
+			return true;
+			
+		} else {
+			return false;
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 }
