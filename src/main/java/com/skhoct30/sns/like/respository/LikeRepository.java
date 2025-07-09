@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.skhoct30.sns.like.domain.Like;
 
+import jakarta.transaction.Transactional;
+
 public interface LikeRepository extends JpaRepository<Like, Long> {
 	
 	// SELECT count(*) FROM `like` WHERE `postId` = 4;
@@ -16,5 +18,6 @@ public interface LikeRepository extends JpaRepository<Like, Long> {
 	// 특정 행이 존재 하는지 / 안하는지.
 	public boolean existsByPostIdAndUserId(long postId, long userId);
 	
-	
+	@Transactional
+	public void deleteByPostId(long postId);
 }

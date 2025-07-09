@@ -23,8 +23,34 @@
 			            <small class="text-muted">서울 동작구 상도동</small>
 			        </div>
 			        <button class="btn btn-sm btn-link text-dark" type="button" id="deleteBtn">
-			            <i class="bi bi-three-dots"></i>
+			            <i th:if="${post.userId == session.userId}" class="bi bi-three-dots"  th:data-post-id="${post.id}"></i>
 			        </button>
+			        <!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+					  Launch demo modal
+					</button>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					  <div class="modal-dialog modal-dialog-centered" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        ...
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        <button type="button" class="btn btn-primary">Save changes</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+			        
 			    </div>
 			
 				<div class="bg-primary d-flex justify-content-center align-items-center rounded-0">
@@ -80,6 +106,50 @@
 	
 	
 	<script layout:fragment="script">
+	
+	
+		// 이미지 파일 아이콘 클릭했을 때 이미지 파일 찾기 열리기
+		$("#imageInput").on("click", function(){
+			//아이콘 이미지태그에 #imageInput 태그 넣기
+			
+		})
+	
+	
+	
+	
+	
+	
+		$(".more-icon").on("click", function(){
+			// 해당 게시물의 프라이머리 키를 심어야한다.
+			// #deleteBtn 에 data-post-id 속성에 대상 게시글의 post id 를 지정
+
+			let postId = $(this).data("post-id");
+			
+			$("#deleteBtn").data("post-id", postId);
+
+			
+			$.ajax({
+				type:"delete"
+				, url:"/post/delete"
+				, data:{"id":postId}
+				, success:function(response) {
+					if(response.result == "success") {
+						location.reload();
+					} else {
+						alert("삭제 실패");
+					}
+				}
+				, error:function() {
+					alert("삭제 에러");
+				}
+			})
+			
+			
+			
+			
+		})
+		
+	
 		
 		$(".comment-btn").on("click", function(){
 			let postId = $(this).data("post-id");

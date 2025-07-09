@@ -143,7 +143,7 @@ public class PostService {
 	
 	// 삭제기능
 	
-	public boolean deletetPost(long id) {
+	public boolean deletePost(long id, long userId) {
 		
 		Optional<Post> optionalPost = postRepository.findById(id);
 		
@@ -151,7 +151,20 @@ public class PostService {
 			
 			Post post = optionalPost.get();
 			
-			//
+			if(post.getUserId() != userId) {
+				// 같지 않으면 ?
+				return false;
+			}
+			
+			
+			
+			// 게시물 다른 정보
+			
+			likeService.deleteLikeByPostId(id);
+			commentService.deletetCommentByPostId(id);
+			
+			FileManager.removeFile(post.getImagePath()); 
+			
 			postRepository.delete(post);
 			
 			return true;

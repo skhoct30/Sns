@@ -72,4 +72,11 @@ public class CommentService {
 	}
 	
 	
+	public void deletetCommentByPostId(long postId) {
+		
+		commentRepository.deleteByPostId(postId);
+		
+	}
+	
+	
 }

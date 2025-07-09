@@ -51,10 +51,14 @@ public class PostRestController {
 	
 	@DeleteMapping("/delete")
 	public Map<String, String> deletePost(
-			@RequestParam long id) {
+			@RequestParam long id
+			, HttpSession session) {
+		// 어디서 가져올거야 ? 세션으로 ? 나는 userId 가 로그인 사용자 정보야!
+		long userId = (Long)session.getAttribute("userId");
+		
 		
 		Map<String, String> resultMap = new HashMap<>();
-		if(postService.deletetPost(id)) {
+		if(postService.deletePost(id, userId)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
